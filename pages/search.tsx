@@ -2,7 +2,7 @@ import { useRouter } from "next/router";
 import React from "react";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
-import { format } from "date-fns";
+import format from "date-fns/format";
 import { SearchQueryData } from "../types";
 
 export default function Search() {

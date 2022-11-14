@@ -38,8 +38,8 @@ export default function Header() {
       pathname: "/search",
       query: {
         location: searchInput,
-        startDate: startDate.toString(),
-        endDate: endDate.toString(),
+        startDate: startDate.toISOString(),
+        endDate: endDate.toISOString(),
         numberOfGuests: guestsNumber,
       },
     });
