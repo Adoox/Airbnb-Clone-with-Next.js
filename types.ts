@@ -29,3 +29,10 @@ export interface dateSelection {
   key: string;
   startDate: Date;
 }
+
+export interface SearchQueryData {
+  location?: string;
+  startDate?: string;
+  endDate?: string;
+  numberOfGuests?: string;
+}
