@@ -36,3 +36,10 @@ export interface SearchQueryData {
   endDate?: string;
   numberOfGuests?: string;
 }
+
+export interface formatDateOptions {
+  weekday?: string;
+  year?: string;
+  month?: string;
+  day?: string;
+}

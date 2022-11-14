@@ -11,7 +11,7 @@ import "react-date-range/dist/styles.css"; // main style file
 import "react-date-range/dist/theme/default.css"; // theme css file
 
 import { DateRangePicker } from "react-date-range";
-import { dateRange } from "../types";
+import { dateRange, formatDateOptions } from "../types";
 import { useRouter } from "next/router";
 
 export default function Header() {
@@ -33,13 +33,20 @@ export default function Header() {
     setEndDate(range.selection.endDate);
   };
 
+  const options: any = {
+    weekday: "long",
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  };
+
   const search = () => {
     router.push({
       pathname: "/search",
       query: {
         location: searchInput,
-        startDate: startDate.toUTCString(),
-        endDate: endDate.toUTCString(),
+        startDate: startDate.toLocaleDateString("en-US", options),
+        endDate: endDate.toLocaleDateString("en-US", options),
         numberOfGuests: guestsNumber,
       },
     });
