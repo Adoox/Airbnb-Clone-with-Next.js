@@ -19,3 +19,13 @@ export interface largeCardData {
   description: string;
   buttonText: string;
 }
+
+export interface dateRange {
+  selection: dateSelection;
+}
+
+export interface dateSelection {
+  endDate: Date;
+  key: string;
+  startDate: Date;
+}
