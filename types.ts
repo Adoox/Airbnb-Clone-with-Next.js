@@ -43,3 +43,19 @@ export interface formatDateOptions {
   month?: string;
   day?: string;
 }
+
+export interface PlaceholderData {
+  placeholder?: string;
+}
+
+export interface SearchResult {
+  description?: string;
+  img?: string;
+  lat?: number;
+  long?: number;
+  location?: string;
+  price?: string;
+  star?: number;
+  title?: string;
+  total?: string;
+}

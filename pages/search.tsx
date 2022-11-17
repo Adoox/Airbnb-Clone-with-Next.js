@@ -3,9 +3,16 @@ import React from "react";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import format from "date-fns/format";
-import { SearchQueryData } from "../types";
+import { SearchQueryData, SearchResult } from "../types";
+import { GetServerSideProps } from "next";
+import SearchCard from "../components/SearchCard";
 
-export default function Search() {
+export default function Search({
+  searchResults,
+}: {
+  searchResults: SearchResult[];
+}) {
+  console.log(searchResults);
   const router = useRouter();
   const { location, startDate, endDate, numberOfGuests }: SearchQueryData =
     router.query;
@@ -17,7 +24,9 @@ export default function Search() {
 
   return (
     <div className="h-screen">
-      <Header />
+      <Header
+        placeholder={`${location} | ${startDate} - ${endDate} | ${numberOfGuests}`}
+      />
       <main className="flex">
         <section className="flex-grow pt-14 px-6">
           <p className="text-xs">
@@ -33,9 +42,38 @@ export default function Search() {
             <p className="filter-button">Rooms and beds</p>
             <p className="filter-button">More filters</p>
           </div>
+
+          <div className="flex flex-col">
+            {searchResults.map((item) => (
+              <SearchCard
+                key={item.img}
+                description={item.description}
+                img={item.img}
+                lat={item.lat}
+                long={item.long}
+                location={item.location}
+                price={item.price}
+                star={item.star}
+                title={item.title}
+                total={item.total}
+              />
+            ))}
+          </div>
         </section>
       </main>
       <Footer />
     </div>
   );
 }
+
+export const getServerSideProps: GetServerSideProps = async () => {
+  const searchResults = await fetch("https://www.jsonkeeper.com/b/5NPS").then(
+    (res) => res.json()
+  );
+
+  return {
+    props: {
+      searchResults: searchResults,
+    },
+  };
+};

@@ -11,10 +11,10 @@ import "react-date-range/dist/styles.css"; // main style file
 import "react-date-range/dist/theme/default.css"; // theme css file
 
 import { DateRangePicker } from "react-date-range";
-import { dateRange, formatDateOptions } from "../types";
+import { dateRange, formatDateOptions, PlaceholderData } from "../types";
 import { useRouter } from "next/router";
 
-export default function Header() {
+export default function Header({ placeholder }: PlaceholderData) {
   const [searchInput, setSearchInput] = useState("");
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
@@ -73,7 +73,7 @@ export default function Header() {
           value={searchInput}
           onChange={(event) => setSearchInput(event.target.value)}
           type="text"
-          placeholder="Start your serach"
+          placeholder={placeholder || "Start your serach"}
           className="flex-grow pl-5 bg-transparent outline-none text-sm text-gray-600"
         />
         <AiOutlineSearch className="hidden md:inline-flex h-8 w-8 bg-red-400 text-white rounded-full p-2 cursor-pointer md:mx-2" />
